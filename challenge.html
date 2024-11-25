@@ -16,6 +16,20 @@
 <body>
     <iframe id="iframe" name="iframe"></iframe>
     <script>
+        // Gathering browser data
+        const browserTime = new Date();
+        const browserData = {
+            browserUserAgent: navigator.userAgent,
+            browserJavaEnabled: navigator.javaEnabled(),
+            browserLanguage: navigator.language,
+            browserScreenHeight: screen.height,
+            browserScreenWidth: screen.width,
+            browserColorDepth: screen.colorDepth,
+            browserTime,
+            browserTimezoneZoneOffset: browserTime.getTimezoneOffset(),
+            browserWindowSize: `${screen.width}x${screen.height}`
+        };
+
         const action = "https://acs-server.ps.msignia.com/api/v1/browser_challenges";
         const value = "eyJhY3NUcmFuc0lEIjoiNjUwOWNhZDItZGQ2Yy00NmYxLWEyOWQtZGVkZWFmMjc2MTc2IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjA1IiwibWVzc2FnZVR5cGUiOiJDUmVxIiwibWVzc2FnZVZlcnNpb24iOiIyLjIuMCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiYTkzM2IyNzUtYjIyYi00NjVmLWE3YmQtODYxYTEwNjRhNzQwIn0=";
 

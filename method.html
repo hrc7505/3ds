@@ -17,17 +17,19 @@
     <iframe id="hidden_iframe" name="hidden_iframe" hidden></iframe>
     <script>
         // Gathering browser data
-       /*  const browserData = {
+        const browserTime = new Date();
+        const browserData = {
             browserUserAgent: navigator.userAgent,
             browserJavaEnabled: navigator.javaEnabled(),
             browserLanguage: navigator.language,
             browserScreenHeight: screen.height,
             browserScreenWidth: screen.width,
             browserColorDepth: screen.colorDepth,
-            browserTime: new Date(),
+            browserTime,
             browserTimezoneZoneOffset: browserTime.getTimezoneOffset(),
-        }; 
-        */
+            browserWindowSize: `${screen.width}x${screen.height}`
+        };
+
 
         const action = "https://acs-server.ps.msignia.com/api/v1/3ds_method";
         const value = "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjogImh0dHBzOi8vM2RzLWZpdmUudmVyY2VsLmFwcC9yZWRpcmVjdC5odG1sIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiAiOWY0NmUyODQtYjkzYy00NzRkLWI4OTctMTk0MjAwNWQ1NjE0In0=";
