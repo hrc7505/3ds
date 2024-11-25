@@ -26,12 +26,14 @@
             browserColorDepth: screen.colorDepth,
             browserTime: new Date(),
             browserTimezoneZoneOffset: browserTime.getTimezoneOffset(),
-        }; */
+        }; 
+        */
 
         const action = "https://acs-server.ps.msignia.com/api/v1/3ds_method";
-        const value = "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjogImh0dHA6Ly9sb2NhbGhvc3Q6NTUwMC9yZWRpcmVjdC5odG1sIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiAiMDQ4NjE2OTctN2JjYi00OTgwLWJjMjAtYmM0OWU0MTZmOGJmIn0=";
+        const value = "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjogImh0dHBzOi8vM2RzLWZpdmUudmVyY2VsLmFwcC9yZWRpcmVjdC5odG1sIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiAiOWY0NmUyODQtYjkzYy00NzRkLWI4OTctMTk0MjAwNWQ1NjE0In0=";
 
         const form = document.createElement("form");
+        form.setAttribute("name", "method-form");
         form.setAttribute("method", "POST");
         form.setAttribute("action", action);
         form.setAttribute("target", "hidden_iframe");
