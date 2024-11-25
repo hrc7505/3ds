@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DS-Challenge</title>
+    <style>
+        iframe {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <iframe id="iframe" name="iframe"></iframe>
+    <script>
+        const action = "https://acs-server.ps.msignia.com/api/v1/browser_challenges";
+        const value = "eyJhY3NUcmFuc0lEIjoiNGU3NzU1YjktNGI0Mi00OTVhLThjNmQtMDEzYjI0MWQ5YjI5IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjA1IiwibWVzc2FnZVR5cGUiOiJDUmVxIiwibWVzc2FnZVZlcnNpb24iOiIyLjIuMCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiMDAzN2FlNDQtMjUwYS00NTkxLThmMzAtMDVlYzJmZTg5Mzc2In0=";
+
+        const form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", action);
+        form.setAttribute("target", "iframe");
+
+        var creqData = document.createElement("input");
+        creqData.setAttribute("type", "hidden");
+        creqData.setAttribute("name", "creq");
+        //add creq object obtained from the server
+        creqData.setAttribute("value", value);
+        form.appendChild(creqData);
+
+        /* optional parameter to include Session Data
+        var sessionData = document.createElement("input");
+        sessionData.setAttribute("type", "hidden");
+        sessionData.setAttribute("name", "threeDSSessionData");
+        creqDatasetAttribute("value", sessionDataObject);
+        form.appendChild(sessionData);
+        */
+
+        document.body.appendChild(form);
+
+        form.submit();
+    </script>
+
+    <script>
+        function on3DSComplete() {
+            // Hide the 3DS UI
+            document.getElementById("iframe").remove();
+        }
+
+        window.addEventListener('message', function (ev) {
+            if (ev.data === '3DS-authentication-complete') {
+                on3DSComplete();
+            }
+        }, false);
+    </script>
+</body>
+
+</html>

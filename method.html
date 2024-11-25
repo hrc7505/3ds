@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DS-Method</title>
+    <style>
+        iframe {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <iframe id="hidden_iframe" name="hidden_iframe" hidden></iframe>
+    <script>
+        // Gathering browser data
+       /*  const browserData = {
+            browserUserAgent: navigator.userAgent,
+            browserJavaEnabled: navigator.javaEnabled(),
+            browserLanguage: navigator.language,
+            browserScreenHeight: screen.height,
+            browserScreenWidth: screen.width,
+            browserColorDepth: screen.colorDepth,
+            browserTime: new Date(),
+            browserTimezoneZoneOffset: browserTime.getTimezoneOffset(),
+        }; */
+
+        const action = "https://acs-server.ps.msignia.com/api/v1/3ds_method";
+        const value = "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjogImh0dHA6Ly9sb2NhbGhvc3Q6NTUwMC9yZWRpcmVjdC5odG1sIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiAiMDQ4NjE2OTctN2JjYi00OTgwLWJjMjAtYmM0OWU0MTZmOGJmIn0=";
+
+        const form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", action);
+        form.setAttribute("target", "hidden_iframe");
+
+        var threeDSMethodData = document.createElement("input");
+        threeDSMethodData.setAttribute("type", "hidden");
+        threeDSMethodData.setAttribute("name", "threeDSMethodData");
+        // add the JSON object returned by Global Payments	    
+        threeDSMethodData.setAttribute("value", value);
+        form.appendChild(threeDSMethodData);
+        document.body.appendChild(form);
+
+        form.submit();
+    </script>
+
+    <script>
+        function on3DSComplete() {
+            // Hide the 3DS UI
+            document.getElementById("hidden_iframe").remove();
+        }
+
+        window.addEventListener('message', function (ev) {
+            if (ev.data === '3DS-authentication-complete') {
+                on3DSComplete();
+            }
+        }, false);
+    </script>
+</body>
+
+</html>
