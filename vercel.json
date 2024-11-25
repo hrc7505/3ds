@@ -21,5 +21,11 @@
                 }
             ]
         }
+    ],
+    "rewrites": [
+        {
+            "source": "/dir/:redirect.html",
+            "destination": "/dir/:redirect.html"
+        }
     ]
 }
