@@ -24,8 +24,8 @@
     ],
     "rewrites": [
         {
-            "source": "/dir/:redirect.html",
-            "destination": "/dir/:redirect.html"
+            "source": "/redirect.html",
+            "destination": "/redirect.html"
         }
     ]
 }
