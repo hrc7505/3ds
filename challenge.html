@@ -17,9 +17,10 @@
     <iframe id="iframe" name="iframe"></iframe>
     <script>
         const action = "https://acs-server.ps.msignia.com/api/v1/browser_challenges";
-        const value = "eyJhY3NUcmFuc0lEIjoiNGU3NzU1YjktNGI0Mi00OTVhLThjNmQtMDEzYjI0MWQ5YjI5IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjA1IiwibWVzc2FnZVR5cGUiOiJDUmVxIiwibWVzc2FnZVZlcnNpb24iOiIyLjIuMCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiMDAzN2FlNDQtMjUwYS00NTkxLThmMzAtMDVlYzJmZTg5Mzc2In0=";
+        const value = "eyJhY3NUcmFuc0lEIjoiNjUwOWNhZDItZGQ2Yy00NmYxLWEyOWQtZGVkZWFmMjc2MTc2IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjA1IiwibWVzc2FnZVR5cGUiOiJDUmVxIiwibWVzc2FnZVZlcnNpb24iOiIyLjIuMCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiYTkzM2IyNzUtYjIyYi00NjVmLWE3YmQtODYxYTEwNjRhNzQwIn0=";
 
         const form = document.createElement("form");
+        form.setAttribute("name", "challenge-form");
         form.setAttribute("method", "POST");
         form.setAttribute("action", action);
         form.setAttribute("target", "iframe");
