@@ -5,12 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3DS-Method</title>
-    <style>
-        iframe {
-            height: 100vh;
-            width: 100%;
-        }
-    </style>
 </head>
 
 <body>
@@ -32,7 +26,7 @@
 
 
         const action = "https://acs-server.ps.msignia.com/api/v1/3ds_method";
-        const value = "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjogImh0dHBzOi8vM2RzLWZpdmUudmVyY2VsLmFwcC9yZWRpcmVjdC5odG1sIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiAiOWY0NmUyODQtYjkzYy00NzRkLWI4OTctMTk0MjAwNWQ1NjE0In0=";
+        const value = "eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjogImh0dHBzOi8vM2RzLXJlZGlyZWN0LWRldi5henVyZXdlYnNpdGVzLm5ldC9hcGkvVGhyZWVEU2VjdXJlIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiAiYWU4OTkzMWItYjBmYi00Y2VhLWI1NzMtYzM2OWQ1ZDFhZGVhIn0=";
 
         const form = document.createElement("form");
         form.setAttribute("name", "method-form");
@@ -52,14 +46,18 @@
     </script>
 
     <script>
+        const origin = "https://3ds-redirect-dev.azurewebsites.net";
+
         function on3DSComplete() {
             // Hide the 3DS UI
             document.getElementById("hidden_iframe").remove();
         }
 
-        window.addEventListener('message', function (ev) {
-            if (ev.data === '3DS-authentication-complete') {
-                on3DSComplete();
+        window.addEventListener("message", function (ev) {
+            if (ev.origin === origin) {
+                if (ev.data?.status === "COMPLETE") {
+                    on3DSComplete();
+                }
             }
         }, false);
     </script>

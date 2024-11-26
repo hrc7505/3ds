@@ -31,7 +31,7 @@
         };
 
         const action = "https://acs-server.ps.msignia.com/api/v1/browser_challenges";
-        const value = "eyJhY3NUcmFuc0lEIjoiNjUwOWNhZDItZGQ2Yy00NmYxLWEyOWQtZGVkZWFmMjc2MTc2IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjA1IiwibWVzc2FnZVR5cGUiOiJDUmVxIiwibWVzc2FnZVZlcnNpb24iOiIyLjIuMCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiYTkzM2IyNzUtYjIyYi00NjVmLWE3YmQtODYxYTEwNjRhNzQwIn0=";
+        const value = "eyJhY3NUcmFuc0lEIjoiNWI3ZTNkNGUtNDljMy00NzEyLWJhNGItMzRhMTExYTA4OTA2IiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjA1IiwibWVzc2FnZVR5cGUiOiJDUmVxIiwibWVzc2FnZVZlcnNpb24iOiIyLjIuMCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiZDg5ZjQ5NDctNjY2Yi00NTRhLThlMWUtNmY5NTY0YTliOWYwIn0=";
 
         const form = document.createElement("form");
         form.setAttribute("name", "challenge-form");
@@ -60,14 +60,18 @@
     </script>
 
     <script>
+        const origin = "https://3ds-redirect-dev.azurewebsites.net";
+
         function on3DSComplete() {
             // Hide the 3DS UI
             document.getElementById("iframe").remove();
         }
 
-        window.addEventListener('message', function (ev) {
-            if (ev.data === '3DS-authentication-complete') {
-                on3DSComplete();
+        window.addEventListener("message", function (ev) {
+            if (ev.origin === origin) {
+                if (ev.data?.status === "COMPLETE") {
+                    on3DSComplete();
+                }
             }
         }, false);
     </script>
